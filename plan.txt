@@ -1,0 +1,6 @@
+onclick:
+check if right
+change color of rightorwrong
+
+onrelease:
+make new letters

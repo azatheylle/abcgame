@@ -12,26 +12,29 @@ RightOrWrong = Circle(200, 50, 30, fill="gray")
 
 Lettershown = Label("", 200, 200, size=100, font='Arial', bold=True, fill='black', align='center')
 
+app.rand1to3 = 0
 
-app.mouseXold = 0
-app.mouseXolder = 0
-app.mouseYold = 0
-app.mouseYolder = 0
 def onMousePress(mouseX, mouseY):
 
-    print("before", mouseX, app.mouseXold, app.mouseXolder)
-    if app.mouseXolder == mouseX:
-        app.mouseXold = mouseX
+    if app.rand1to3 == 1:
+        if (box1.hits(mouseX, mouseY) == True):
+            RightOrWrong.fill = "Green"
+        else:
+            RightOrWrong.fill = "Red"
+    elif app.rand1to3 == 2:
+        if (box2.hits(mouseX, mouseY) == True):
+            RightOrWrong.fill = "Green"
+        else:
+            RightOrWrong.fill = "Red"
+    elif app.rand1to3 == 3:
+        if (box3.hits(mouseX, mouseY) == True):
+            RightOrWrong.fill = "Green"
+        else:
+            RightOrWrong.fill = "Red"
     else:
-        app.mouseXolder = app.mouseXold
-        app.mouseXold = mouseX
-    print("after", mouseX, app.mouseXold, app.mouseXolder)
-    if app.mouseYolder == mouseY:
-            app.mouseYold = mouseY
-    else:
-        app.mouseYolder = app.mouseYold
-        app.mouseYold = mouseY
+        pass
 
+def onMouseRelease(mouseX, mouseY):
 
     Mainletter = randrange(0, 25)
     Lettershown.value = alphabet[Mainletter]
@@ -40,26 +43,12 @@ def onMousePress(mouseX, mouseY):
     letter2.value= alphabet[randrange(0, 25)]
     letter3.value= alphabet[randrange(0, 25)]
 
-    rand1to3 = randrange(1, 4)
-    if rand1to3 == 1:
-        letter1.value = alphabet[Mainletter-1].lower()
-        if (box1.hits(app.mouseXolder, app.mouseYolder) == True):
-            RightOrWrong.fill = "Green"
-        else:
-            RightOrWrong.fill = "Red"
-    elif rand1to3 == 2:
-        letter2.value = alphabet[Mainletter-1].lower()
-        if (box2.hits(app.mouseXolder, app.mouseYolder) == True):
-            RightOrWrong.fill = "Green"
-        else:
-            RightOrWrong.fill = "Red"
-    elif rand1to3 == 3:
-        letter3.value = alphabet[Mainletter-1].lower()
-        if (box3.hits(app.mouseXolder, app.mouseYolder) == True):
-            RightOrWrong.fill = "Green"
-        else:
-            RightOrWrong.fill = "Red"
-    
-
+    app.rand1to3 = randrange(1, 4)
+    if app.rand1to3 == 1:
+        letter1.value = alphabet[Mainletter-1]
+    elif app.rand1to3 == 2:
+        letter2.value = alphabet[Mainletter-1]
+    elif app.rand1to3 == 3:
+        letter3.value = alphabet[Mainletter-1]
 
 cmu_graphics.run()
